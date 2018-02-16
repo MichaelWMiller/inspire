@@ -1,44 +1,56 @@
 <html>
 
 <head>
-	<meta charset="UTF-8">
-	<title>Inspire</title>
-	<link rel="stylesheet" href="assets/css/style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Inspire</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="body">
-	<div id="weather">
-		Your Weather Template
-	</div>
-
-	<div id="quote">
-		The Quote
-	</div>
-
-	<div id="todo">
-		<form onsubmit=""></form>
-		A Todo List
-	</div>
+<body id="body" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 )">
 
 
 
+    <div class="top-right weather">
+        <h3>Your Weather Template</h3>
+    </div>
+    <div class="pos-center clock">
+        <h3>A clock</h3>
+        <h2>Good Morning, Doofus!</h2>
+        <span class="clock-look" id="clock">&nbsp;</span>
+    </div>
+    <div class="bottom-center quote">
+        <h3>The Quote</h3>
+    </div>
+    <div class="bottom-right todo">
+        <h3>A Todo List</h3>
+        <form onsubmit=""></form>
+        <!-- A Todo List -->
+    </div>
+    <div class="bottom-left img-changing">
+        <h3>Image Desc, or something, maybe setup also</h3>
+    </div>
 
-	<!--JS Libraries-->
-	<script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
-	<!--Services-->
-	<script src="app/components/weather/weather-service.js"></script>
-	<script src="app/components/image/image-service.js"></script>
-	<script src="app/components/quote/quote-service.js"></script>
-	<script src="app/components/todo/todo-service.js"></script>
 
-	<!--Controllers-->
-	<script src="app/components/weather/weather-controller.js"></script>
-	<script src="app/components/image/image-controller.js"></script>
-	<script src="app/components/quote/quote-controller.js"></script>
-	<script src="app/components/todo/todo-controller.js"></script>
 
-	<!--Initialize App-->
-	<script src="app/init.js"></script>
+    <!--JS Libraries-->
+    <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
+    <!--Services-->
+    <script src="app/components/weather/weather-service.js"></script>
+    <script src="app/components/image/image-service.js"></script>
+    <script src="app/components/quote/quote-service.js"></script>
+    <script src="app/components/todo/todo-service.js"></script>
+
+    <!--Controllers-->
+    <script src="app/components/weather/weather-controller.js"></script>
+    <script src="app/components/image/image-controller.js"></script>
+    <script src="app/components/quote/quote-controller.js"></script>
+    <script src="app/components/todo/todo-controller.js"></script>
+
+    <!--Initialize App-->
+    <script src="app/init.js"></script>
+    <script src="app/clock.js"></script>
 </body>
 
 </html>
