@@ -1,10 +1,9 @@
 function updateClock() {
-    debugger
-    var curTime = new Date();
 
-    var curHrs = curTime.getHrs();
-    var curMins = curTime.getMins();
-    var curSecs = curTime.getSecs();
+    var d = new Date()
+    var curHrs = d.getHours();
+    var curMins = d.getMinutes();
+    var curSecs = d.getSeconds();
 
     // Pad the mins and secs with leading zeros, if required
     curMins = (curMins < 10 ? "0" : "") + curMins;
