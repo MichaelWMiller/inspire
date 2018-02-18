@@ -23,4 +23,18 @@ function updateClock() {
 
     // Update the time display
     document.getElementById("clock").innerHTML = curTimeString;
+
+    var greet = document.getElementById("greet").innerHTML
+    if (timeOfDay == "AM") {
+        greet = "Morning"
+    }
+    if (timeOfDay == "PM") {
+        if (curHrs <= 5) {
+            greet = "Afternoon"
+        } else {
+            greet = "Evening"
+        }
+    }
+    document.getElementById("greet").innerText = greet
+
 }

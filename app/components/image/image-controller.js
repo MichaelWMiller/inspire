@@ -4,14 +4,16 @@ function ImageController() {
 
 
     this.getImage = function getImage() {
-        debugger
+
         imageService.getImage(updateImage)
     }
 
     function updateImage(imgObj) {
-        var largeImage = imgObj.large_Image
+
+        var largeImage = imgObj.large_url
             //var largeImage = "https://splashbase.s3.amazonaws.com/moveast/large/tumblr_o5y039e0vg1tomxvuo10_1280.jpg"
-        document.body.style.backgroundImage = largeImage
+        $('body').css('background-image', 'url("' + largeImage + '")')
+            // document.body.style.backgroundImage.url = largeImage
     }
 
     //getImage()

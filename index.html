@@ -9,16 +9,14 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="body" style="background-image: url('assets/image/inspire.jpg')" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 );
-app.controllers.imageController.getImage(); setInterval('getImage()', 60000)">
+<body id="body" style="background-image: url('assets/image/inspire.jpg')" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 ); app.controllers.imageController.getImage(); setInterval('getImage()', 60000)">
 
     <div class="top-right weather">
         <h3>Your Weather Template</h3>
     </div>
     <div class="pos-center">
         <h1 class="greeting">
-            <center>Good <span id="greeting">Morning</span>, Doofus!
-            </center>
+            <center>Good <span id="greet">...</span>, Doofus!</center>
         </h1>
         <div class="clock-look" id="clock">&nbsp;
         </div>
@@ -26,9 +24,18 @@ app.controllers.imageController.getImage(); setInterval('getImage()', 60000)">
     <div class="bottom-center quote">
         <h3>The Quote</h3>
     </div>
-    <div class="bottom-right todo">
-        <h3>A Todo List</h3>
-        <form onsubmit=""></form>
+    <div class="bottom-right todos">
+        <h3><u>To-Do List<u></u></h3>
+        <div id=todos-here>
+            <div class="form-group">
+                <input type="text" name="id" class="form-control" required value="1" readonly hidden>
+                <input type="checkbox" name="todo-checkbox" id="todo-checkbox" value="">
+                <input type="text" name="Item" value="A Sample ToDo item">
+                <input type="boolean" name="completed" hidden value="">
+                <i onclick="app.controllers.todoControl.toggleToDoStatus('1')" class="action fa fa-fw fa-lg far fa-list-alt text-blue">Edit</i>
+                <i onclick="app.controllers.todoControl.removeTodo('1')" class="action fa fa-fw fa-lg fa-trash text-red">Remove</i>
+            </div>
+        </div>
         <!-- A Todo List -->
     </div>
     <div class="bottom-left img-changing">

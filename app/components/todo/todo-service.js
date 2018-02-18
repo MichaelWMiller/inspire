@@ -1,7 +1,13 @@
 function TodoService() {
     // A local copy of your todos
-    var todoList = []
+    var localTodos = []
     var baseUrl = 'https://inspire-server.herokuapp.com/api/todo-miller'
+
+    function ToDo(formData) {
+        this.item = formData.item.value
+        this.checked = formData.checkbox.value
+        this.completed = formData.completed.value
+    }
 
     function logError(err) {
         console.error('UMM SOMETHING BROKE: ', err)
@@ -9,24 +15,30 @@ function TodoService() {
             //do this without breaking the controller/service responsibilities
     }
 
-    this.getTodos = function(draw) {
+    this.getTodos = function getTodos(cb) {
+        debugger
         $.get(baseUrl)
             .then(function(res) { // <-- WHY IS THIS IMPORTANT????
-
+                localTodos = res
+                console.log(res)
+                cb(localTodos)
             })
             .fail(logError)
     }
 
-    this.addTodo = function(todo) {
+    this.addTodo = function(formData, cb) {
         // WHAT IS THIS FOR???
         $.post(baseUrl, todo)
-            .then(function(res) { // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-
+            .then(function(res) {
+                localTodos.unshift(res.data)
+                cb(localTodos)
+                    // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
+                this.getTodos(cb)
             })
             .fail(logError)
     }
 
-    this.toggleTodoStatus = function(todoId) {
+    this.toggleTodoStatus = function(todoId, id) {
         // MAKE SURE WE THINK THIS ONE THROUGH
         //STEP 1: Find the todo by its index **HINT** todoList
 
@@ -40,14 +52,26 @@ function TodoService() {
                 data: JSON.stringify(YOURTODOVARIABLEHERE)
             })
             .then(function(res) {
-                //DO YOU WANT TO DO ANYTHING WITH THIS?
+                for (var i = 0; i < localTodos.length; i++) {
+                    var todo = localToDos[i]
+                    if (todo.indexOf('id') == id) {
+                        to.completed = !todo.completed;
+                    }
+                }
+                this.getToDos(cb)
             })
             .fail(logError)
     }
 
-    this.removeTodo = function() {
+    this.removeTodo = function(id, cb) {
         // Umm this one is on you to write.... It's also unique, like the ajax call above. The method is a DELETE
-
+        $.ajax({
+                url: baseURL + '/' + id,
+                method: 'DELETE'
+            })
+            .then(res => {
+                this.getTodos(cb)
+            })
     }
 
 }
