@@ -9,10 +9,10 @@
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
-<body id="body" style="background-image: url('assets/image/inspire.jpg')" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 ); app.controllers.imageController.getImage(); setInterval('getImage()', 60000)">
+<body id="body" style="background-image: url('assets/image/inspire.jpg')" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 ); app.controllers.imageController.getImage(); 
+setInterval('app.controllers.imageController.getImage()', 60000)">
 
-    <div class="top-right weather">
-        <h3>Your Weather Template</h3>
+    <div class="top-right weather" id="weather-here">
     </div>
     <div class="pos-center">
         <h1 class="greeting">
@@ -21,25 +21,32 @@
         <div class="clock-look" id="clock">&nbsp;
         </div>
     </div>
-    <div class="bottom-center quote">
-        <h3>The Quote</h3>
+    <div class="bottom-center quote" id=quote-here>
+
     </div>
     <div class="bottom-right todos">
-        <h3><u>To-Do List<u></u></h3>
-        <div id=todos-here>
-            <div class="form-group">
-                <input type="text" name="id" class="form-control" required value="1" readonly hidden>
-                <input type="checkbox" name="todo-checkbox" id="todo-checkbox" value="">
-                <input type="text" name="Item" value="A Sample ToDo item">
-                <input type="boolean" name="completed" hidden value="">
-                <i onclick="app.controllers.todoControl.toggleToDoStatus('1')" class="action fa fa-fw fa-lg far fa-list-alt text-blue">Edit</i>
-                <i onclick="app.controllers.todoControl.removeTodo('1')" class="action fa fa-fw fa-lg fa-trash text-red">Remove</i>
+        <h3><u>To-Do List</u></h3>
+        <form onsubmit="app.controllers.todoController.addTodoFromForm(event)" id="todos-here">
+            <div class="form-group hidden">
+                <label for="id">id:</label>
+                <input type="text" name="id" class="form-control" required value="1" readonly>
             </div>
-        </div>
+            <input class="form-check-input" name="chkBox" type="checkbox" value="false" id="chkBox">
+            <input class="form-control" type="text" name="item" value="..." placeholder="Enter todo" id="item">
+            <input class="form-control hidden" name="completed" type="text" value="false" id="completed">
+            <i onclick="app.controllers.todoController.removeTodo('1')" class="removeToDo fa fa-fw fa-sm fa-trash text-red tooltip">
+              <span class="tooltiptext">Remove To-do</span></i>
+            <div>
+                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="reset" class="btn btn-danger">Clear Form</button>
+            </div>
+
+        </form>
+
         <!-- A Todo List -->
     </div>
     <div class="bottom-left img-changing">
-        <h3>Image Desc</h3>
+        <button class="button btn btn-warning" onclick="app.controllers.imageController.getImage()">Get new background</button>
     </div>
 
 

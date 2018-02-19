@@ -55,14 +55,15 @@ body, html {
   position: absolute;
   left: 16px;
   bottom: 8px;
+  font-size: 6px;
   z-index: 1;
 }
 
 /* Bottom right text */
 .bottom-right {
   position: absolute;
-  right: 16px;
-  bottom: 8px;
+  right: 30px;
+  bottom: 50px;
   z-index: 2;
 }
 
@@ -77,9 +78,13 @@ body, html {
 /*  Bottom centered text */
 .bottom-center {
   position: absolute;
-  bottom: 8px;
-  left: 50%;
+  bottom: 30px;
+  left: 35%;
+  width: 35%;
   z-index: 1;
+  color: white;
+  background-color: grey;
+  opacity: .75;
 }
 
 .ct-outer {
@@ -97,4 +102,29 @@ body, html {
 .greeting {
   color: cyan;
   font-size: 6rem;
+}
+
+.todoLook {
+  background-color: grey;
+  color: white;
+}
+
+.removeToDo {
+  color: red;
+}
+
+.tooltip hover.tooltiptext {
+  visibility: visible;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 50px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 4px 0;
+  border-radius: 3px;
+  position: absolute;
+  z-index: 1;
 }

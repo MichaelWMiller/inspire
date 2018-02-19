@@ -1,11 +1,14 @@
 function TodoService() {
     // A local copy of your todos
     var localTodos = []
-    var baseUrl = 'https://inspire-server.herokuapp.com/api/todo-miller'
+    var baseUrl = 'https://inspire-server.herokuapp.com/api/miller'
+
+
 
     function ToDo(formData) {
-        this.item = formData.item.value
-        this.checked = formData.checkbox.value
+        debugger
+        this.item = formData.chkBox.value
+        this.checked = formData.item.value
         this.completed = formData.completed.value
     }
 
@@ -16,7 +19,6 @@ function TodoService() {
     }
 
     this.getTodos = function getTodos(cb) {
-        debugger
         $.get(baseUrl)
             .then(function(res) { // <-- WHY IS THIS IMPORTANT????
                 localTodos = res
@@ -26,8 +28,10 @@ function TodoService() {
             .fail(logError)
     }
 
-    this.addTodo = function(formData, cb) {
+    this.addTodoFromForm = function(formData, cb) {
         // WHAT IS THIS FOR???
+
+        var todo = new ToDo(formData)
         $.post(baseUrl, todo)
             .then(function(res) {
                 localTodos.unshift(res.data)
@@ -49,7 +53,7 @@ function TodoService() {
                 method: 'PUT',
                 contentType: 'application/json',
                 url: baseUrl + '/' + todoId,
-                data: JSON.stringify(YOURTODOVARIABLEHERE)
+                data: JSON.stringify(localToDos)
             })
             .then(function(res) {
                 for (var i = 0; i < localTodos.length; i++) {
@@ -66,7 +70,7 @@ function TodoService() {
     this.removeTodo = function(id, cb) {
         // Umm this one is on you to write.... It's also unique, like the ajax call above. The method is a DELETE
         $.ajax({
-                url: baseURL + '/' + id,
+                url: baseUrl + '/' + id,
                 method: 'DELETE'
             })
             .then(res => {

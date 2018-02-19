@@ -29,7 +29,7 @@ function updateClock() {
         greet = "Morning"
     }
     if (timeOfDay == "PM") {
-        if (curHrs <= 5) {
+        if (curHrs <= 5 || curHrs == 12) {
             greet = "Afternoon"
         } else {
             greet = "Evening"
