@@ -6,9 +6,9 @@ function TodoService() {
 
 
     function ToDo(formData) {
-        debugger
-        this.item = formData.chkBox.value
-        this.checked = formData.item.value
+
+        this.checked = formData.chkBox.value
+        this.item = formData.item.value
         this.completed = formData.completed.value
     }
 
@@ -21,6 +21,7 @@ function TodoService() {
     this.getTodos = function getTodos(cb) {
         $.get(baseUrl)
             .then(function(res) { // <-- WHY IS THIS IMPORTANT????
+
                 localTodos = res
                 console.log(res)
                 cb(localTodos)
@@ -30,14 +31,13 @@ function TodoService() {
 
     this.addTodoFromForm = function(formData, cb) {
         // WHAT IS THIS FOR???
-
         var todo = new ToDo(formData)
         $.post(baseUrl, todo)
             .then(function(res) {
                 localTodos.unshift(res.data)
                 cb(localTodos)
                     // <-- WHAT DO YOU DO AFTER CREATING A NEW TODO?
-                this.getTodos(cb)
+                this.getToDos(cb)
             })
             .fail(logError)
     }
@@ -49,17 +49,18 @@ function TodoService() {
         //STEP 2: Change the completed flag to the opposite of what is is **HINT** todo.completed = !todo.completed
 
         //STEP 3: Here is that weird Ajax request because $.put doesn't exist
+        debugger
         $.ajax({
                 method: 'PUT',
                 contentType: 'application/json',
                 url: baseUrl + '/' + todoId,
-                data: JSON.stringify(localToDos)
+                data: JSON.stringify(localTodos)
             })
             .then(function(res) {
                 for (var i = 0; i < localTodos.length; i++) {
                     var todo = localToDos[i]
                     if (todo.indexOf('id') == id) {
-                        to.completed = !todo.completed;
+                        (todo.chkbox.checked) ? todo.completed = "checked": todo.completed = ""
                     }
                 }
                 this.getToDos(cb)

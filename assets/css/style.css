@@ -64,9 +64,10 @@ body, html {
 /* Bottom right text */
 .bottom-right {
   position: absolute;
-  right: 30px;
+  right: 60px;
   bottom: 50px;
-  z-index: 2;
+  background-color: #000000;
+  color: #ffffff;
 }
 
 /* Centered text */

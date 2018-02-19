@@ -29,7 +29,7 @@ app.controllers.weatherController.getWeather(); setInterval('app.controllers.wea
     <div class="bottom-right todos">
         <h3><u>To-Do List</u></h3>
         <form onsubmit="app.controllers.todoController.addTodoFromForm(event)" id="todos-here">
-            <div class="form-group hidden">
+            <!-- <div class="form-group hidden">
                 <label for="id">id:</label>
                 <input type="text" name="id" class="form-control" required value="1" readonly>
             </div>
@@ -41,17 +41,16 @@ app.controllers.weatherController.getWeather(); setInterval('app.controllers.wea
             <div>
                 <button type="submit" class="btn btn-success">Submit</button>
                 <button type="reset" class="btn btn-danger">Clear Form</button>
-            </div>
+            </div> -->
+
 
         </form>
-
+        <button class="buttons btn btn-warning" onclick="app.controllers.todoController.newTodo()">Add Todo</button>
         <!-- A Todo List -->
     </div>
     <div class="bottom-left img-changing">
         <button class="button btn btn-warning" onclick="app.controllers.imageController.getImage()">Get new background</button>
     </div>
-
-
 
     <!--JS Libraries-->
     <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>

@@ -9,12 +9,10 @@ function ImageController() {
     }
 
     function updateImage(imgObj) {
-
+        
         var largeImage = imgObj.large_url
-            //var largeImage = "https://splashbase.s3.amazonaws.com/moveast/large/tumblr_o5y039e0vg1tomxvuo10_1280.jpg"
-        $('body').css('background-image', 'url("' + largeImage + '")')
-            // document.body.style.backgroundImage.url = largeImage
-    }
+         $('body').css('background-image', 'url("' + largeImage + '")')
+     }
 
     //getImage()
 }

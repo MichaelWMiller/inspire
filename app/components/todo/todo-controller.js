@@ -21,22 +21,28 @@ function TodoController() {
     }
 
     function draw(todos) {
-        if (todos == undefined) {
+        if (todos == undefined || todos.length == 0) {
             return "No Todo\'s"
+
         }
         var template = `<p>${todos.length} to do\'s</p>`
 
         todos.forEach(todo => {
+            if (todo.completed) {
+                todo.completed.value = 'checked'
+            } else {
+                todo.completed.value = ""
+            }
             template += `
-			<p>${todos.length} to do\'s</p>
+			
 			<div class="form-check todoLook">
 				<div class="form-group hidden">
 					<label for="id">id:</label>
 					<input type="text" name="id" class="form-control" required value="${todo.id}" readonly>
 				</div>
-                <input class="form-check-input" name="chkBox" type="checkbox" value="${todo.chkbox}" id="chkBox">
+                <input class="form-check-input" name="chkbox" type="checkbox" value="${todo.checked}" id="checked" onchange="app.controllers.todoController.toggleTodoStatus("${todo.id}")>
                 <input class="form-control" type="text" name="item" value="${todo.item}" placeholder="Enter todo" id="item">
-                <input class="form-control hidden" name="completed" type="text" value="${todo.completed}" id="completed">
+                <input class="form-control hidden" name="completed" type="text" value=${todo.completed} id="completed">
                 <i onclick="app.controllers.todoController.removeTodo('${todo.id}')" class="removeToDo fa fa-fw fa-lg fa-trash text-red"></i>
             </div>
             <div>
@@ -53,6 +59,33 @@ function TodoController() {
 		`
         todosElem.innerHTML = template
     }
+
+    this.newTodo = function newTodo() {
+        var template = `<p>0 to do\'s</p>`
+
+        template += `
+			
+			<div class="form-check todoLook">
+				
+                <input class="form-check-input" name="chkBox" type="checkbox" value="" id="chkBox">
+                <input class="form-control" type="text" name="item" value="" placeholder="Enter todo" id="item">
+                <input class="form-control hidden" name="completed" type="text" value=false id="completed">
+             </div>
+            <div>
+            	<button type="submit" class="btn btn-success">Submit</button>
+            	<button type="reset" class="btn btn-danger">Clear Form</button>
+        	</div>
+			`
+
+        template += `
+		<div id="addToDo>
+				<i onclick="app.controllers.todoController.addToDoFromForm(event)" class="fas fa-plus-circle text-blue"></i>
+			</div>
+        `
+
+        todosElem.innerHTML = template
+    }
+
     //WHAT IS MY PURPOSE?
     //BUILD YOUR TODO TEMPLATE HERE
 
@@ -60,6 +93,7 @@ function TodoController() {
 
 
     this.addTodoFromForm = function(event) {
+
         event.preventDefault() // <-- hey this time its a freebie don't forget this
             // TAKE THE INFORMATION FORM THE FORM
         var form = event.target
@@ -72,8 +106,10 @@ function TodoController() {
 
     this.toggleTodoStatus = function(todoId) {
         // asks the service to edit the todo status
+
         todoService.toggleTodoStatus(todoId, getTodos)
-            // YEP THATS IT FOR ME
+
+        // YEP THATS IT FOR ME
     }
 
     this.removeTodo = function(todoId) {
@@ -85,5 +121,5 @@ function TodoController() {
 
     // IF YOU WANT YOUR TODO LIST TO DRAW WHEN THE PAGE FIRST LOADS WHAT SHOULD YOU CALL HERE???
     getTodos()
-    draw()
+
 }
