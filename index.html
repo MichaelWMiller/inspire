@@ -1,4 +1,5 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
@@ -10,7 +11,8 @@
 </head>
 
 <body id="body" style="background-image: url('assets/image/inspire.jpg')" class="bg" onload="updateClock(); setInterval('updateClock()', 1000 ); app.controllers.imageController.getImage(); 
-setInterval('app.controllers.imageController.getImage()', 60000)">
+setInterval('app.controllers.imageController.getImage()', 60000)
+app.controllers.weatherController.getWeather(); setInterval('app.controllers.weatherController.getWeather()',180000)">
 
     <div class="top-right weather" id="weather-here">
     </div>
